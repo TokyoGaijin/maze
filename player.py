@@ -6,10 +6,10 @@ class Player(object):
         self.surface = surface
         self.posX = posX
         self.posY = posY
-        self.player_color = cs.red["pygame"]
-        self.size = 5
+        self.color = cs.red["pygame"]
+        self.size = 10
         self.speed = 5
-        self.player_rect = pygame.Rect(self.size, self.size, self.posX, self.posY)
+        self.player_rect = pygame.Rect(self.posX, self.posY, self.size, self.size)
 
 
     def move(self, direction):
@@ -36,3 +36,7 @@ class Player(object):
             self.move("left")
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.move("right")
+
+
+    def draw(self):
+        pygame.draw.rect(self.surface, self.color, self.player_rect)

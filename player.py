@@ -2,10 +2,10 @@ import pygame
 import colorswatch as cs
 
 class Player(object):
-    def __init__(self, surface, posX, posY):
+    def __init__(self, surface):
         self.surface = surface
-        self.posX = posX
-        self.posY = posY
+        self.posX = 0
+        self.posY = 0
         self.color = cs.red["pygame"]
         self.size = 10
         self.speed = 5

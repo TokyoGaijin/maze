@@ -18,23 +18,38 @@ CLOCK = pygame.time.Clock()
 FPS = 60
 
 inPlay = True
-player = p.Player(WINDOW, SCREEN_X / 2, SCREEN_Y / 2)
+player = p.Player(WINDOW)
+board = maze.WallBlock(WINDOW)
+board.build_level()
 
-def init():
-    maze.build(WINDOW)
-    print(len(maze.current_maze))
+def stage_player():
+    x, y = 0, 0
+    for row in board.maze_pattern:
+        for col in row:
+            if col == "S":
+                player.posX = x
+                player.posY = y
+
+            x += 20
+
+        y += 20
+        x = 0
+    player.player_rect.x = player.posX
+    player.player_rect.y = player.posY
+
+stage_player()
 
 def update():
     player.update()
 
+
 def draw():
     player.draw()
-    maze.draw()
+    board.draw()
 
 
 def main():
     global inPlay
-    init()
 
     while inPlay:
         CLOCK.tick(FPS)
@@ -51,6 +66,7 @@ def main():
         draw()
         pygame.display.update()
         WINDOW.fill(BG)
+
 
 if __name__ == "__main__":
     main()

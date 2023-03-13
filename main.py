@@ -39,9 +39,26 @@ def stage_player():
 
 stage_player()
 
-def update():
-    player.update()
 
+def check_collisions():
+
+    for block in board.current_maze:
+        if player.player_rect.colliderect(block):
+            if (player.posX + player.size >= block.x and player.posX < block.x):
+                player.posX = block.x - player.size
+            elif (player.posX <= block.x + board.size and player.posX + player.size > block.x + board.size):
+                player.posX = block.x + board.size
+            elif (player.posY + player.size >= block.y and player.posY < block.y):
+                player.posY = block.y - player.size
+            elif (player.posY <= block.y + board.size and player.posY + player.size > block.y + board.size):
+                player.posY = block.y + board.size
+
+
+
+
+def update():
+    check_collisions()
+    player.update()
 
 def draw():
     player.draw()

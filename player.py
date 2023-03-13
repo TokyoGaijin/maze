@@ -10,6 +10,10 @@ class Player(object):
         self.size = 10
         self.speed = 5
         self.player_rect = pygame.Rect(self.posX, self.posY, self.size, self.size)
+        self.right = self.player_rect.right
+        self.left = self.player_rect.left
+        self.top = self.player_rect.top
+        self.bottom = self.player_rect.bottom
 
 
     def move(self, direction):
